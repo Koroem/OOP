@@ -1,5 +1,7 @@
 #include "Math.h"
 #include <cstring>
+#include <cstdlib>
+#include <cmath>
 #include <iostream>
 using namespace std;
 
@@ -65,7 +67,7 @@ int Math::Add(int count, ...) /* count=nr of arguments*/
     return sum;
 }
 
-char *Math::Add(const char *x, const char *y)
+/*char *Math::Add(const char *x, const char *y)
 {
     if (x == nullptr || y == nullptr)
         return nullptr;
@@ -76,4 +78,32 @@ char *Math::Add(const char *x, const char *y)
     strcat(result, y);
 
     return result;
+} */
+
+char *Math ::Add(const char *x, const char *y)
+{
+    if (x == nullptr || y == nullptr)
+        return nullptr;
+
+    int sum = atoi(x) + atoi(y);
+
+    if (sum < 0)
+    {
+
+        char *sir = new char[(int)(floor(log10(-sum))) + 3]; // suma de numere negative
+        itoa(sum, sir, 10);
+        return sir;
+    }
+    if (sum > 0)
+    {
+        char *sir = new char[(int)(floor(log10(sum))) + 2]; // suma de numere pozitive
+        itoa(sum, sir, 10);
+        return sir;
+    }
+    if (sum == 0)
+    {
+        char *sir = new char[2]; // suma da 0
+        itoa(sum, sir, 10);
+        return sir;
+    }
 }
